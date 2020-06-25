@@ -2,27 +2,24 @@ import React, { Component } from 'react';
 import ReactPaginate from 'react-paginate';
 import Loader from './Loader/Loader';
 import Table from './Table/Table';
-import DetailRowView from './DetailRowView/DetailRowView';
-import ModeSelector from './ModeSelector/ModeSelector';
 import TableSearch from './TableSearch/TableSearch';
 import _ from 'lodash';
 
-
 class App extends Component {
+
   state ={
     isModeSelected: false,
     isLoading: false,
     data: [],
     search: '',
     sort: 'asc',  // 'desc'
-    sortField: 'id',
+    sortField: 'name',
     row: null,
     currentPage: 0,
   }
   async fetchData(url) {
     const response = await fetch(url)
     const data = await response.json()
-   
     this.setState({
       isLoading: false,
       data: _.orderBy(data, this.state.sortField, this.state.sort)
@@ -37,7 +34,7 @@ class App extends Component {
   }
 
   modeSelectHandler = url => {
-    // console.log(url)
+    console.log(url)
     this.setState({
       isModeSelected: true,
       isLoading: true,
@@ -66,9 +63,8 @@ class App extends Component {
     }
    var result = data.filter(item => {
      return (
-       item["firstName"].toLowerCase().includes(search.toLowerCase()) ||
-       item["lastName"].toLowerCase().includes(search.toLowerCase()) ||
-       item["email"].toLowerCase().includes(search.toLowerCase())
+       item['name'].toLowerCase().includes(search.toLowerCase()) ||
+       item['mission'].toLowerCase().includes(search.toLowerCase())
      );
    });
    if(!result.length){
@@ -82,7 +78,7 @@ class App extends Component {
     if(!this.state.isModeSelected){
       return (
         <div className="container">
-          <ModeSelector onSelect={this.modeSelectHandler}/>
+          {this.modeSelectHandler('https://api.jsonbin.io/b/5ef4d2b2e2ce6e3b2c798573')}
         </div>
       )
     }
@@ -130,10 +126,6 @@ class App extends Component {
         nextLinkClassName="page-link"
         forcePage={this.state.currentPage}
       /> : null
-      }
-
-      {
-        this.state.row ? <DetailRowView person={this.state.row} /> : null
       }
       </div>
     );

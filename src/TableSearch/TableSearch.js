@@ -26,11 +26,10 @@ export default props => {
         </div>
 
         <p className="text-center">
-          The search will show any matching values. If there is no match,
-          then all the data.
+            Поиск покажет любые подходящие значения. Если нет совпадений,
+            тогда все данные.
         </p>
-        <p className="text-center">To sort, click on the title.</p>
-        <p className="text-center">Click on each row - view details</p>
+        <p className="text-center">Чтобы отсортировать, нажмите на заголовок.</p>
       </>
     );
 }
