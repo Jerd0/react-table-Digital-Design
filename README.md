@@ -1,7 +1,7 @@
 
 Для запуска серверa использвался https://github.com/typicode/json-server
 
-###`cd test-server`
+###`cd test-project`
 
 ###`npm install -g json-server`
 
